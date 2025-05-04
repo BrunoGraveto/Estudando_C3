@@ -390,4 +390,25 @@ int ordenarPreencherFila(Fila* fila1, Fila* fila2, Fila* fila3) {
     return 1;
 }
 
+////////////////////////////////////////////////////////
+// EXERCICIO 8  ////////////////////////////////////////
+////////////////////////////////////////////////////////
+
+int removerFilaCircular(FilaCircular* filaCircular){
+    if (filaCircular == NULL || filaCircular->inicio == NULL) return 0;
+    ElementoCircular *elementoCircular = filaCircular->inicio;
+    filaCircular->inicio = filaCircular->inicio->prox;
+    if (filaCircular->inicio == NULL) filaCircular->final = NULL;
+    free(elementoCircular);
+    filaCircular->qtd--;
+    return 1;
+}
+
+int consultarFilaCircular(FilaCircular* filaCircular, float* valor){
+    if(filaCircular == NULL) return 0;
+    if(filaCircular->inicio == NULL) return 0;
+    *valor = filaCircular->inicio->valor;
+    return 1;
+}
+
 #endif
