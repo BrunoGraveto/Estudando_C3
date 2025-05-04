@@ -35,4 +35,11 @@ int inserirPilhaNaFila(FilaDePilha* filaDePilha, Pilha* pilha);
 void imprimirFilaDePilha(FilaDePilha* filaDePilha);
 void liberarFilaDePilha(FilaDePilha* filaDePilha);
 
+// Exercicio 4:
+FilaCircular* criarFilaCircular();
+void liberarFilaCircular(FilaCircular* filaCircular);
+int inserirFilaCircular(FilaCircular* filaCircular, float valor);
+void imprimirFilaCircular(FilaCircular* filaCircular);
+int furarFilaCircular(FilaCircular* filaCircular, float valor);
+
 #endif
