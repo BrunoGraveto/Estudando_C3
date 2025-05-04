@@ -1,3 +1,5 @@
+// FEITO EM DUPLA POR: BRUNO E. S. ALCANTARA, RA: 2677156 & JEFFERSON K. JUNIOR, RA: 2651114.
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -41,3 +43,16 @@ int main() {
 
     return 0;
 }
+
+/*
+    São criadas duas filas, passada 4 alunos para cada, e em seguida criado uma pilha de filas,
+    a qual a partir da função insereFilaNaPilha que tem como parametro a pilha que irá receber e a
+    fila que será adicionada, adicione outras. Para que isso funcione, foi necessário criar um
+    novo tipo de pilha, a qual invés de receber os alunos como anteriormente, receba filas, e essas filas alunos.
+    Assim, foi feito uma função que passa por dentro da pilha de filas chamando a função de imprimir
+    fila dentro dela, assim verificando se os alunos foram realmente adicionados a pilha que foi adicionado a
+    pilha de filas.
+    Concluindo, fizemos uma função liberarPilhaDeFila que segue da mesma forma que a função dita
+    anteriormente, a qual passa por dentro da pilha de filas chamando a função liberarFila assim,
+    liberando a memória, e em seguida finalizando o programa.
+*/
