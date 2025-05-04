@@ -1,3 +1,9 @@
+# Other
+*.pdf
+*.txt
+*.DS_Store
+*.json
+
 # Prerequisites
 *.d
 
