@@ -288,7 +288,7 @@ void liberarFilaDePilha(FilaDePilha* filaDePilha) {
 // EXERCICIO 4  ////////////////////////////////////////
 ////////////////////////////////////////////////////////
 
-FilaCircular* criarFilaCircular(){
+FilaCircular* criarFilaCircular() {
     FilaCircular* filaCircular = (FilaCircular*) malloc(sizeof(FilaCircular));
     if (filaCircular != NULL) {
         filaCircular->final = NULL;
@@ -298,7 +298,7 @@ FilaCircular* criarFilaCircular(){
     return filaCircular;
 }
 
-void liberarFilaCircular(FilaCircular* filaCircular){
+void liberarFilaCircular(FilaCircular* filaCircular) {
     if (filaCircular != NULL) {
         ElementoCircular* elementoCircular = filaCircular->inicio;
         for (int i = 0; i < filaCircular->qtd; i++) {
@@ -310,7 +310,7 @@ void liberarFilaCircular(FilaCircular* filaCircular){
     }
 }
 
-int inserirFilaCircular(FilaCircular* filaCircular, float valor){
+int inserirFilaCircular(FilaCircular* filaCircular, float valor) {
     if(filaCircular == NULL) return 0;
     ElementoCircular *no = (ElementoCircular*) malloc(sizeof(ElementoCircular));
     if(no == NULL) return 0;
@@ -346,6 +346,47 @@ int furarFilaCircular(FilaCircular* filaCircular, float valor) {
     filaCircular->inicio = elementoCircular;
     filaCircular->final->prox = filaCircular->inicio;
     filaCircular->qtd++;
+    return 1;
+}
+
+////////////////////////////////////////////////////////
+// EXERCICIO 6  ////////////////////////////////////////
+////////////////////////////////////////////////////////
+
+int ordenarFila(Fila *fila) {
+    if (fila == NULL || fila->inicio == NULL || fila->qtd < 2) return 0;
+    int sair;
+    do {
+        sair = 0;
+        Elemento *elemento = fila->inicio;
+        while (elemento->prox != NULL) {
+            if (elemento->dados.matricula > elemento->prox->dados.matricula) {
+                struct aluno aux = elemento->dados;
+                elemento->dados = elemento->prox->dados;
+                elemento->prox->dados = aux;
+                sair = 1;
+            }
+            elemento = elemento->prox;
+        }
+    } while (sair != 0);
+    return 1;
+}
+
+int ordenarPreencherFila(Fila* fila1, Fila* fila2, Fila* fila3) {
+    if (fila1 == NULL || fila2 == NULL || fila3 == NULL) return 0;
+    Elemento *elemento1 = fila1->inicio;
+    Elemento *elemento2 = fila2->inicio;
+    while (elemento1 != NULL || elemento2 != NULL) {
+        if (elemento1 != NULL) {
+            insere_Fila(fila3, elemento1->dados);
+            elemento1 = elemento1->prox;
+        }
+        if (elemento2 != NULL) {
+            insere_Fila(fila3, elemento2->dados);
+            elemento2 = elemento2->prox;
+        }
+    }
+    if(!ordenarFila(fila3)) return 0;
     return 1;
 }
 

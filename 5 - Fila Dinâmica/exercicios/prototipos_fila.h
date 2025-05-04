@@ -42,4 +42,8 @@ int inserirFilaCircular(FilaCircular* filaCircular, float valor);
 void imprimirFilaCircular(FilaCircular* filaCircular);
 int furarFilaCircular(FilaCircular* filaCircular, float valor);
 
+// Exercicio 6:
+int ordenarFila(Fila* fila);
+int ordenarPreencherFila(Fila* fila1, Fila* fila2, Fila* fila3);
+
 #endif
