@@ -7,36 +7,46 @@
 #include "prototipos_fila.h" 
 #include "pilha.h"
 
-struct elemento{
+typedef struct elemento {
     struct aluno dados;
     struct elemento *prox;
-};
-typedef struct elemento Elem;
+} Elemento;
 struct fila{
-    struct elemento *inicio;
-    struct elemento *final;
+    Elemento *inicio;
+    Elemento *final;
     int qtd;
 };
 
-struct elementoFila {
+// Exercício 2 a):
+typedef struct elementoFila {
     struct fila *dados;
     struct elementoFila *prox;
-};
-typedef struct elementoFila ElemFila;
+} ElementoFila;
 struct filaDeFila {
-    struct elementoFila *inicio;
-    struct elementoFila *final;
+    ElementoFila *inicio;
+    ElementoFila *final;
     int qtd;
 };
 
-struct elementoPilha {
+// Exercício 2 b):
+typedef struct elementoPilha {
     Pilha *dados;
     struct elementoPilha *prox;
-};
-typedef struct elementoPilha ElemPilha;
+} ElementoPilha;
 struct filaDePilha {
-    struct elementoPilha *inicio;
-    struct elementoPilha *final;
+    ElementoPilha *inicio;
+    ElementoPilha *final;
+    int qtd;
+};
+
+// Exercicio 4:
+typedef struct elementoCircular {
+    float valor;
+    struct elementoCircular *prox;
+} ElementoCircular;
+struct filaCircular {
+    ElementoCircular *inicio;
+    ElementoCircular *final;
     int qtd;
 };
 
@@ -52,7 +62,7 @@ Fila* cria_Fila(){
 
 void libera_Fila(Fila* fi){
     if(fi != NULL){
-        Elem* no;
+        Elemento* no;
         while(fi->inicio != NULL){
             no = fi->inicio;
             fi->inicio = fi->inicio->prox;
@@ -74,7 +84,7 @@ int consulta_Fila(Fila* fi, struct aluno *al){
 int insere_Fila(Fila* fi, struct aluno al){
     if(fi == NULL)
         return 0;
-    Elem *no = (Elem*) malloc(sizeof(Elem));
+    Elemento *no = (Elemento*) malloc(sizeof(Elemento));
     if(no == NULL)
         return 0;
     no->dados = al;
@@ -93,7 +103,7 @@ int remove_Fila(Fila* fi){
         return 0;
     if(fi->inicio == NULL)//fila vazia
         return 0;
-    Elem *no = fi->inicio;
+    Elemento *no = fi->inicio;
     fi->inicio = fi->inicio->prox;
     if(fi->inicio == NULL)//fila ficou vazia
         fi->final = NULL;
@@ -124,7 +134,7 @@ int Fila_cheia(Fila* fi){
 void imprime_Fila(Fila* fi){
     if(fi == NULL)
         return;
-    Elem* no = fi->inicio;
+    Elemento* no = fi->inicio;
     while(no != NULL){
         printf("Matricula: %d\n",no->dados.matricula);
         printf("Nome: %s\n",no->dados.nome);
@@ -141,16 +151,21 @@ void imprime_Fila(Fila* fi){
 ////////////////////////////////////////////////////////
 
 int separarFila(Fila* f1, Fila* f2, int matricula) {
-    if (f1 == NULL || f2 == NULL || Fila_vazia(f1) || (!Fila_vazia(f2)) || f1->final->dados.matricula == matricula) return 0;
-    Elem *elem = f1->inicio;
-    while (elem != NULL && elem->dados.matricula != matricula) elem = elem->prox;
-    if (elem != NULL) {
+    if (f1 == NULL || f2 == NULL || Fila_vazia(f1) || !Fila_vazia(f2)) return 0;
+    if (f1->final->dados.matricula == matricula) return 0;
+    Elemento *elem = f1->inicio;
+    int count = 0;
+    while (elem != NULL && elem->dados.matricula != matricula) {
+        elem = elem->prox;
+        count++;
+    } 
+    if (elem != NULL && elem->prox != NULL) {
         f2->inicio = elem->prox;
         f2->final = f1->final;
-        f2->qtd = tamanho_Fila(f2);
+        f2->qtd = f1->qtd - count;
         f1->final = elem;
         f1->final->prox = NULL;
-        f1->qtd = tamanho_Fila(f1);
+        f1->qtd = count;
     } else {
         return 0;
     }
@@ -177,7 +192,7 @@ FilaDeFila* criarFilaDeFila() {
 
 int inserirFilaNaFila(FilaDeFila* filaDeFila, Fila* fila) {
     if (filaDeFila == NULL || fila == NULL) return 0;
-    ElemFila *elemFila = (ElemFila*) malloc(sizeof(ElemFila));
+    ElementoFila *elemFila = (ElementoFila*) malloc(sizeof(ElementoFila));
     if (elemFila == NULL) return 0;
     elemFila->dados = fila;
     elemFila->prox = NULL;
@@ -193,7 +208,7 @@ int inserirFilaNaFila(FilaDeFila* filaDeFila, Fila* fila) {
 
 void imprimirFilaDeFila(FilaDeFila* filaDeFila) {
     if (filaDeFila == NULL) return;
-    ElemFila *elemFila = filaDeFila->inicio;
+    ElementoFila *elemFila = filaDeFila->inicio;
     while (elemFila != NULL) {
         printf("\nFila:\n");
         imprime_Fila(elemFila->dados);
@@ -203,13 +218,15 @@ void imprimirFilaDeFila(FilaDeFila* filaDeFila) {
 
 void liberarFilaDeFila(FilaDeFila* filaDeFila) {
     if (filaDeFila == NULL) return;
-    ElemFila *elemFila = filaDeFila->inicio;
+    ElementoFila *elemFila = filaDeFila->inicio;
     while (elemFila != NULL) {
-        elemFila = filaDeFila->inicio;
+        ElementoFila *temp = elemFila;
         libera_Fila(elemFila->dados);
-        filaDeFila->inicio = filaDeFila->inicio->prox;
-        free(elemFila);
+        elemFila = elemFila->prox;
+        free(temp);
     }
+    filaDeFila->inicio = NULL;
+    filaDeFila->final = NULL;
     free(filaDeFila);
 }
 
@@ -229,7 +246,7 @@ FilaDePilha* criarFilaDePilha() {
 
 int inserirPilhaNaFila(FilaDePilha* filaDePilha, Pilha* pilha) {
     if (filaDePilha == NULL || pilha == NULL) return 0;
-    ElemPilha *elemPilha = (ElemPilha*) malloc(sizeof(ElemPilha));
+    ElementoPilha *elemPilha = (ElementoPilha*) malloc(sizeof(ElementoPilha));
     if (elemPilha == NULL) return 0;
     elemPilha->dados = pilha;
     elemPilha->prox = NULL;
@@ -245,7 +262,7 @@ int inserirPilhaNaFila(FilaDePilha* filaDePilha, Pilha* pilha) {
 
 void imprimirFilaDePilha(FilaDePilha* filaDePilha) {
     if (filaDePilha == NULL) return;
-    ElemPilha *elemPilha = filaDePilha->inicio;
+    ElementoPilha *elemPilha = filaDePilha->inicio;
     while (elemPilha != NULL) {
         printf("\nPilha:\n");
         imprimirPilha(elemPilha->dados);
@@ -255,14 +272,81 @@ void imprimirFilaDePilha(FilaDePilha* filaDePilha) {
 
 void liberarFilaDePilha(FilaDePilha* filaDePilha) {
     if (filaDePilha == NULL) return;
-    ElemPilha *elemPilha = filaDePilha->inicio;
+    ElementoPilha *elemPilha = filaDePilha->inicio;
     while (elemPilha != NULL) {
-        elemPilha = filaDePilha->inicio;
+        ElementoPilha *temp = elemPilha;
         liberarPilha(elemPilha->dados);
-        filaDePilha->inicio = filaDePilha->inicio->prox;
-        free(elemPilha);
+        elemPilha = elemPilha->prox;
+        free(temp);
     }
+    filaDePilha->inicio = NULL;
+    filaDePilha->final = NULL;
     free(filaDePilha);
+}
+
+////////////////////////////////////////////////////////
+// EXERCICIO 4  ////////////////////////////////////////
+////////////////////////////////////////////////////////
+
+FilaCircular* criarFilaCircular(){
+    FilaCircular* filaCircular = (FilaCircular*) malloc(sizeof(FilaCircular));
+    if (filaCircular != NULL) {
+        filaCircular->final = NULL;
+        filaCircular->inicio = NULL;
+        filaCircular->qtd = 0;
+    }
+    return filaCircular;
+}
+
+void liberarFilaCircular(FilaCircular* filaCircular){
+    if (filaCircular != NULL) {
+        ElementoCircular* elementoCircular = filaCircular->inicio;
+        for (int i = 0; i < filaCircular->qtd; i++) {
+            ElementoCircular *aux = elementoCircular;
+            elementoCircular = elementoCircular->prox;
+            free(aux);
+        }
+        free(filaCircular);
+    }
+}
+
+int inserirFilaCircular(FilaCircular* filaCircular, float valor){
+    if(filaCircular == NULL) return 0;
+    ElementoCircular *no = (ElementoCircular*) malloc(sizeof(ElementoCircular));
+    if(no == NULL) return 0;
+    no->valor = valor;
+    no->prox = NULL;
+    if (filaCircular->final == NULL) {
+        filaCircular->inicio = no;
+    } else {
+        filaCircular->final->prox = no;
+    }
+    filaCircular->final = no;
+    filaCircular->final->prox = filaCircular->inicio;
+    filaCircular->qtd++;
+    return 1;
+}
+
+void imprimirFilaCircular(FilaCircular* filaCircular) {
+    if (filaCircular == NULL) return;
+    ElementoCircular* elementoCircular = filaCircular->inicio;
+    printf("\nFila Circular:\n");
+    for (int i = 0; i < filaCircular->qtd; i++, elementoCircular = elementoCircular->prox) {
+        printf("-> %.2f\n", elementoCircular->valor);
+    }
+}
+
+int furarFilaCircular(FilaCircular* filaCircular, float valor) {
+    if (filaCircular == NULL ) return 0;
+    if (filaCircular->inicio == NULL) return inserirFilaCircular(filaCircular, valor);
+    ElementoCircular *elementoCircular = (ElementoCircular*) malloc(sizeof(ElementoCircular));
+    if (elementoCircular == NULL) return 0; 
+    elementoCircular->valor = valor;
+    elementoCircular->prox = filaCircular->inicio;
+    filaCircular->inicio = elementoCircular;
+    filaCircular->final->prox = filaCircular->inicio;
+    filaCircular->qtd++;
+    return 1;
 }
 
 #endif

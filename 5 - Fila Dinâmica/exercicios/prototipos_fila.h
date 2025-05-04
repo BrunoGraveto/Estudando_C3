@@ -7,6 +7,7 @@
 typedef struct fila Fila;
 typedef struct filaDeFila FilaDeFila;
 typedef struct filaDePilha FilaDePilha;
+typedef struct filaCircular FilaCircular;
 typedef struct pilha Pilha;
 
 Fila* cria_Fila();
