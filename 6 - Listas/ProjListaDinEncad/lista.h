@@ -187,4 +187,41 @@ void imprime_lista(Lista* li){
     }
 }
 
+/////////////////////////////////////////////////////////
+//// EXERCICIO 1 ////////////////////////////////////////
+/////////////////////////////////////////////////////////
+
+
+///////
+// A //
+///////
+struct aluno* consultarAlunoMat(Lista* lista, int matricula) {
+    if (lista == NULL) 
+        return NULL;
+    Elemento *no = *lista;
+    while (no != NULL) {
+        if (no->dados.matricula == matricula)
+            return &no->dados;
+        no = no->prox;
+    }
+    return NULL;
+}
+
+///////
+// B //
+///////
+struct aluno* consultarAlunoPos(Lista* lista, int pos) {
+    if (lista == NULL) 
+        return NULL;
+    Elemento *no = *lista;
+    int posAux = 0;
+    while (no != NULL) {
+        if (posAux == pos)
+            return &no->dados;
+        no = no->prox;
+        posAux++;
+    }
+    return NULL;
+}
+
 #endif
