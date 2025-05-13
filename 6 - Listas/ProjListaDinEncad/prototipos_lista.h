@@ -22,4 +22,10 @@ int lista_vazia(Lista* li);
 int lista_cheia();
 void imprime_lista(Lista* li);
 
+// -> Exercicio 1:
+// A
+struct aluno* consultarAlunoMat(Lista* lista, int matricula);
+// B
+struct aluno* consultarAlunoPos(Lista* lista, int pos);
+
 #endif
