@@ -224,4 +224,32 @@ struct aluno* consultarAlunoPos(Lista* lista, int pos) {
     return NULL;
 }
 
+/////////////////////////////////////////////////////////
+//// EXERCICIO 2 ////////////////////////////////////////
+/////////////////////////////////////////////////////////
+
+int removerNo(Lista* lista, int remover) {
+    Elemento *no = *lista;
+    if (no == NULL) 
+        return 0;
+    if (no->dados.matricula == remover) {
+        *lista = no->prox;
+        free(no);
+        return 1;
+    }   
+    return removerNo(&(no->prox), remover);
+}
+
+int equals(Lista* lista1, Lista* lista2) {
+    Elemento *no1 = *lista1;
+    Elemento *no2 = *lista2;
+    if (no1 == NULL || no2 == NULL)
+        return 0;
+    if (tamanho_lista(&(no1)) != tamanho_lista(&(no2)))  
+        return 0;
+    if (no1->dados.matricula != no2->dados.matricula)
+        return 1;
+    return equals(&(no1->prox), &(no2->prox));
+}
+
 #endif

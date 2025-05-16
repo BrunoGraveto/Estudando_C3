@@ -1,10 +1,10 @@
 #ifndef PROTOTIPOS_LISTA_H
 #define PROTOTIPOS_LISTA_H
 
-struct aluno{
+struct aluno {
     int matricula;
     char nome[30];
-    float n1,n2,n3;
+    float n1, n2, n3;
 };
 
 typedef struct elemento* Lista;
@@ -27,5 +27,9 @@ void imprime_lista(Lista* li);
 struct aluno* consultarAlunoMat(Lista* lista, int matricula);
 // B
 struct aluno* consultarAlunoPos(Lista* lista, int pos);
+
+// -> Exercicio 2:
+int removerNo(Lista* lista, int remover);
+int equals(Lista* lista1, Lista* lista2);
 
 #endif
