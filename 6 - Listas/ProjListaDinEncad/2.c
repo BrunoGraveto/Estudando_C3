@@ -1,3 +1,5 @@
+// FEITO EM DUPLA POR: BRUNO E. S. ALCANTARA, RA: 2677156 & JEFFERSON K. JUNIOR, RA: 2651114.
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -39,3 +41,10 @@ int main() {
     libera_lista(lista1);
     libera_lista(lista2);   
 }
+
+/*
+    Crio dois vetores de alunos, um com 4, e outro com 3 (sendo iguais ao do primeiro), crio duas listas,
+    passando esses alunos para elas, em seguida verifico através da função recursiva equals se elas são 
+    iguais, inicialmente não, mas depois de eu remover um nó especifico da lista com 4 alunos e verificar
+    novamente se são iguais, agora sim, e depois disso liberando a memória alocada das duas listas.
+*/
