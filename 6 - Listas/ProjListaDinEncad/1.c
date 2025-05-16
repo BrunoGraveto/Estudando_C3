@@ -1,3 +1,5 @@
+// FEITO EM DUPLA POR: BRUNO E. S. ALCANTARA, RA: 2677156 & JEFFERSON K. JUNIOR, RA: 2651114.
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "lista.h"
