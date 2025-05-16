@@ -31,6 +31,11 @@ struct aluno* consultarAlunoPos(Lista* lista, int pos);
 int removerNo(Lista* lista, int remover);
 int equals(Lista* lista1, Lista* lista2);
 
+// -> Exercicio 4:
+ListaFloat* criarListaFloat();
+int inserirFinalListaFloat(ListaFloat* lista, float valor);
+ListaFloat* vetorParaLista(float* vetor, int tamanho);
+void imprimirListaFloat(ListaFloat* lista);
 
 
 #endif
