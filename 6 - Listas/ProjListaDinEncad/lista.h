@@ -8,7 +8,7 @@ struct aluno {
 };
 
 typedef struct elemento* Lista;
-
+typedef struct ElementoFloat* ListaFloat;
 
 Lista* cria_lista();
 void libera_lista(Lista* li);
@@ -36,6 +36,8 @@ ListaFloat* criarListaFloat();
 int inserirFinalListaFloat(ListaFloat* lista, float valor);
 ListaFloat* vetorParaLista(float* vetor, int tamanho);
 void imprimirListaFloat(ListaFloat* lista);
+
+// -> Exercicio 6:
 
 
 #endif

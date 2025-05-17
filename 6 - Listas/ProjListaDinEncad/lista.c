@@ -261,8 +261,6 @@ typedef struct ElementoFloat {
     struct ElementoFloat* prox;
 } ElementoFloat;
 
-typedef struct ElementoFloat* ListaFloat;
-
 ListaFloat* criarListaFloat() {
     ListaFloat* listaFloat = (ListaFloat*) malloc(sizeof(ListaFloat));
     if (listaFloat != NULL)
@@ -300,7 +298,7 @@ ListaFloat* vetorParaLista(float* vetor, int tamanho) {
     return lista;
 }
 
-void imprimirListaFloat(ListaFloat* lista){
+void imprimirListaFloat(ListaFloat* lista) {
     if(lista == NULL)
         return;
     ElementoFloat* no = *lista;
@@ -308,6 +306,25 @@ void imprimirListaFloat(ListaFloat* lista){
         printf("-> %.2f\n", no->valor);
         no = no->prox;
     }
+}
+
+/////////////////////////////////////////////////////////
+//// EXERCICIO 4 ////////////////////////////////////////
+/////////////////////////////////////////////////////////
+
+Lista* concatenar(Lista* lista1, Lista* lista2) {
+    if (lista1 == NULL || lista2 == NULL)
+        return 0;
+    Lista* lista3 = cria_lista();
+    for (int listas = 0; listas < 2; listas++) {
+        Elemento *no;
+        if (listas == 0) no = *lista1; else no = *lista2;
+        while(no != NULL) {
+            insere_lista_final(lista3, no->dados);
+            no = no->prox;
+        }
+    }
+    return lista3;
 }
 
 #endif
