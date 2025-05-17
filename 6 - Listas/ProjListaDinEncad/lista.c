@@ -308,8 +308,20 @@ void imprimirListaFloat(ListaFloat* lista) {
     }
 }
 
+void liberarListaFloat(ListaFloat* lista) {
+    if((*lista) != NULL){
+        ElementoFloat* no;
+        while(no != NULL){
+            no = *lista;
+            *lista = (*lista)->prox;
+            free(no);
+        }
+        free(lista);
+    }
+}
+
 /////////////////////////////////////////////////////////
-//// EXERCICIO 4 ////////////////////////////////////////
+//// EXERCICIO 6 ////////////////////////////////////////
 /////////////////////////////////////////////////////////
 
 Lista* concatenar(Lista* lista1, Lista* lista2) {

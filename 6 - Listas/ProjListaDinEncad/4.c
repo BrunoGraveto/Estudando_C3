@@ -13,6 +13,8 @@ int main() {
 
     imprimirListaFloat(lista);
 
+    liberarListaFloat(lista);
+
     return 0;
 }
 

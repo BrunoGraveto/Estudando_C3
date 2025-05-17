@@ -14,7 +14,7 @@ int main() {
         {4, "Igor", 7.5, 8.7, 6.8}
     };
 
-    struct aluno alunos2[4] = {
+    struct aluno alunos2[3] = {
         {1, "Jefferson", 9.7, 6.7, 8.4},
         {3, "Marciano", 5.7, 6.1, 7.4},
         {4, "Igor", 7.5, 8.7, 6.8}
@@ -23,11 +23,10 @@ int main() {
     Lista *lista1 = cria_lista();
     Lista *lista2 = cria_lista();
 
-
-    for (int i = 0; i < 4; i++) {
-        insere_lista_ordenada(lista1, alunos1[i]);
+    for (int i = 0; i < 4; i++) 
+        insere_lista_ordenada(lista1, alunos1[i]); 
+    for (int i = 0; i < 3; i++) 
         insere_lista_ordenada(lista2, alunos2[i]);
-    }
 
     for (int i = 0; i < 2; i++) {
         if (equals(lista1, lista2)) {

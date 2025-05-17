@@ -36,8 +36,9 @@ ListaFloat* criarListaFloat();
 int inserirFinalListaFloat(ListaFloat* lista, float valor);
 ListaFloat* vetorParaLista(float* vetor, int tamanho);
 void imprimirListaFloat(ListaFloat* lista);
+void liberarListaFloat(ListaFloat* lista);
 
 // -> Exercicio 6:
-
+Lista* concatenar(Lista* lista1, Lista* lista2);
 
 #endif
