@@ -32,6 +32,15 @@ int main() {
     imprime_lista(lista1);
 
     libera_lista(lista1);
+    libera_lista(lista2);
 
     return 0;
 }
+
+/*
+    Crio dois vetores de alunos, duas listas, em seguida insiro ordenamente o vetor 1 na lista 1
+    e o vetor 2 na lista 2, depois chamo a função fusaoOrdenada passando como parametro as duas 
+    listas, nela eu passo o ponteiro prox do ultimo elemento da lista 1 para o começo da lista2
+    assim juntando as duas, mas como não estão ordenadas ainda, fiz uma função onde faz a ordenação
+    agora das duas juntas, em seguida imprimo na tela para mostrar, e depois libero a memória das listas.
+*/
