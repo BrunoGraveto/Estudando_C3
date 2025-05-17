@@ -15,7 +15,7 @@ int main() {
 
     Lista* lista = cria_lista();
     for (int i = 0; i < 4; i++)
-        insere_lista_ordenada(lista, alunos[i]);
+        insere_lista_final(lista, alunos[i]);
 
     // Alternativa A
     struct aluno *aluno = consultarAlunoMat(lista, 2);

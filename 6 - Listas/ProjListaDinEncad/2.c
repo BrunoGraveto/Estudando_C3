@@ -24,15 +24,15 @@ int main() {
     Lista *lista2 = cria_lista();
 
     for (int i = 0; i < 4; i++) 
-        insere_lista_ordenada(lista1, alunos1[i]); 
+        insere_lista_final(lista1, alunos1[i]); 
     for (int i = 0; i < 3; i++) 
-        insere_lista_ordenada(lista2, alunos2[i]);
+        insere_lista_final(lista2, alunos2[i]);
 
     for (int i = 0; i < 2; i++) {
         if (equals(lista1, lista2)) {
-            printf("-> Listas Diferentes!\n\n");
-        } else {
             printf("-> Listas Iguais!\n\n");
+        } else {
+            printf("-> Listas Diferentes!\n\n");
         }
         removerNo(lista1, 2);
     }
