@@ -41,4 +41,8 @@ void liberarListaFloat(ListaFloat* lista);
 // -> Exercicio 6:
 Lista* concatenar(Lista* lista1, Lista* lista2);
 
+// -> Exercicio 8:
+int ordenar (Lista* lista);
+int fusaoOrdenada(Lista* lista1, Lista* lista2);
+
 #endif

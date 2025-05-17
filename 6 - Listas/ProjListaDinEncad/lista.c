@@ -245,9 +245,9 @@ int equals(Lista* lista1, Lista* lista2) {
     Elemento *no2 = *lista2;
     if (no1 == NULL || no2 == NULL)
         return 0;
-    if (tamanho_lista(&(no1)) != tamanho_lista(&(no2)))  
+    if (tamanho_lista(lista1) != tamanho_lista(lista2))  
         return 0;
-    if (no1->dados.matricula != no2->dados.matricula)
+    if (no1->dados.matricula == no2->dados.matricula)
         return 1;
     return equals(&(no1->prox), &(no2->prox));
 }
@@ -276,7 +276,7 @@ int inserirFinalListaFloat(ListaFloat* lista, float valor) {
         return 0;
     novoNo->valor = valor;
     novoNo->prox = NULL;
-    if (*lista == NULL) {
+    if ((*lista) == NULL) {
         *lista = novoNo;
     } else {
         ElementoFloat *no = *lista;
@@ -311,7 +311,7 @@ void imprimirListaFloat(ListaFloat* lista) {
 void liberarListaFloat(ListaFloat* lista) {
     if((*lista) != NULL){
         ElementoFloat* no;
-        while(no != NULL){
+        while((*lista) != NULL){
             no = *lista;
             *lista = (*lista)->prox;
             free(no);
@@ -337,6 +337,46 @@ Lista* concatenar(Lista* lista1, Lista* lista2) {
         }
     }
     return lista3;
+}
+
+/////////////////////////////////////////////////////////
+//// EXERCICIO 8 ////////////////////////////////////////
+/////////////////////////////////////////////////////////
+
+int ordenar (Lista* lista) {
+    if (lista == NULL || *lista == NULL)
+        return 0;
+    int sair;
+    Elemento *aux = (Elemento*) malloc(sizeof(Elemento));
+    do {
+        Elemento *no = *lista;
+        sair = 1;
+        while (no != NULL) {
+            if (no->prox != NULL && no->dados.matricula > no->prox->dados.matricula) {
+                aux->dados = no->dados;
+                no->dados = no->prox->dados;
+                no->prox->dados = aux->dados;
+                sair = 0;
+            }
+            no = no->prox;
+        }
+    } while (sair == 0);
+    return 1;
+}
+
+int fusaoOrdenada(Lista* lista1, Lista* lista2) {
+    if (lista1 == NULL || lista2 == NULL)
+        return 0;
+    if (*lista1 == NULL) { 
+        *lista1 = *lista2;
+    } else {
+        Elemento *no = *lista1;
+        while (no->prox != NULL) 
+            no = no->prox;
+        no->prox = *lista2;
+    }
+    ordenar(lista1);
+    return 1;
 }
 
 #endif
