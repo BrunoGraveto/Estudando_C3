@@ -1,4 +1,5 @@
-//Arquivo ListaDinEncadDupla.h
+#ifndef LISTA_DIN_ENCAD_DUPLA_H
+#define LISTA_DIN_ENCAD_DUPLA_H
 
 struct aluno{
     int matricula;
@@ -19,3 +20,5 @@ int remove_lista_final(Lista* li);
 int tamanho_lista(Lista* li);
 int lista_vazia(Lista* li);
 void imprime_lista(Lista* li);
+
+#endif
