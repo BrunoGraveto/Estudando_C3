@@ -1,6 +1,3 @@
-#ifndef LISTA_DIN_ENCAD_DUPLA_C
-#define LISTA_DIN_ENCAD_DUPLA_C
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -151,7 +148,7 @@ int tamanho_lista(Lista* li){
     return cont;
 }
 
-int lista_cheia(Lista* li){
+int lista_cheia(){
     return 0;
 }
 
@@ -179,4 +176,28 @@ void imprime_lista(Lista* li){
     }
 }
 
-#endif
+///////////////////////////////////////////////////
+// Exercicio 1 ////////////////////////////////////
+///////////////////////////////////////////////////
+
+int removerPorMatricula(Lista* lista, int matricula) {
+    if (lista == NULL || (*lista) == NULL)
+        return 0;
+    Elem *no = *lista;
+    while (no != NULL && no->dados.matricula != matricula) {
+        no = no->prox;
+    }
+    if (no == NULL)
+        return 0;
+    if (no->ant == NULL) {
+        *lista = no->prox;
+        if (no->prox != NULL)
+            no->prox->ant = NULL;
+    } else {
+        no->ant->prox = no->prox;
+        if (no->prox != NULL)
+            no->prox->ant = no->ant;
+    }
+    free(no);
+    return 1;
+}

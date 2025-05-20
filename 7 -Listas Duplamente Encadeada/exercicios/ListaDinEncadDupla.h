@@ -21,4 +21,7 @@ int tamanho_lista(Lista* li);
 int lista_vazia(Lista* li);
 void imprime_lista(Lista* li);
 
+// -> Exercicio 1:
+int removerPorMatricula(Lista* lista, int matricula);
+
 #endif
