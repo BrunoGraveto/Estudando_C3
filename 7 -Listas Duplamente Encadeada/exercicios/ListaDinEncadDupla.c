@@ -4,7 +4,7 @@
 #include "ListaDinEncadDupla.h" //inclui os Prot�tipos
 
 //Defini��o do tipo lista
-struct elemento{
+struct elemento {
     struct elemento *ant;
     struct aluno dados;
     struct elemento *prox;
@@ -200,4 +200,21 @@ int removerPorMatricula(Lista* lista, int matricula) {
     }
     free(no);
     return 1;
+}
+
+
+///////////////////////////////////////////////////
+// Exercicio 3 ////////////////////////////////////
+///////////////////////////////////////////////////
+int conta_lista_nota(Lista* lista, int n1) {
+    if (lista == NULL || (*lista) == NULL)
+        return 0;
+    Elem *no = *lista;
+    int counter = 0;
+    while (no != NULL) {
+        if (no->dados.n1 == n1)
+            counter++;
+        no = no->prox;
+    }
+    return counter;
 }

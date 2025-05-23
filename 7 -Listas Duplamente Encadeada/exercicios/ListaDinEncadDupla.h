@@ -24,4 +24,7 @@ void imprime_lista(Lista* li);
 // -> Exercicio 1:
 int removerPorMatricula(Lista* lista, int matricula);
 
+// -> Exercicio 3:
+int conta_lista_nota(Lista* lista, int n1);
+
 #endif
