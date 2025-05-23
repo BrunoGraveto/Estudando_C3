@@ -19,3 +19,10 @@ int main() {
 
     libera_lista(lista);
 }
+
+/*
+    Crio um vetor de alunos, crio uma lista, adiciono os alunos a lista, chamo
+    a função conta_lista_nota diretamente no printf onde ela percorre por toda
+    a lista buscando por notas iguais a passada, no caso, 10.0, assim imprimindo
+    a determinada quantia da mesma nota. logo depois liberando a memória da lista.
+*/

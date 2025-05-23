@@ -23,3 +23,10 @@ int main() {
 
     return 0;
 }
+
+/*
+    Crio um vetor de alunos, crio uma lista, adiciono os alunos a lista, chamo
+    a função removerPorMatricula onde ela percorre por toda a lista buscando por
+    no caso, 3, e remove, após isso, imprime para mostrar, e depois libera a
+    memória da lista.
+*/
