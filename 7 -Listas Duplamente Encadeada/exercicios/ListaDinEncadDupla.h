@@ -8,6 +8,7 @@ struct aluno{
 };
 
 typedef struct elemento* Lista;
+typedef struct nodesc* noDesc;
 
 Lista* cria_lista();
 void libera_lista(Lista* li);
@@ -26,5 +27,9 @@ int removerPorMatricula(Lista* lista, int matricula);
 
 // -> Exercicio 3:
 int conta_lista_nota(Lista* lista, int n1);
+
+// -> Exercicio 5:
+int enfileirar(noDesc *n, int elem);
+int desenfileirar(noDesc *n, int *elem);
 
 #endif
