@@ -187,8 +187,8 @@ int insere_lista_ordenada(Lista* li, struct aluno al){
     if(no == NULL)
         return 0;
     no->dados = al;
-    no->prox = NULL; //No thiago noa tem isso aqui
-    no->ant = NULL; //Thiago nao tem 
+    no->prox = NULL;
+    no->ant = NULL; 
 
     if((*li) == NULL){//lista vazia: insere in�cio
         no->prox = NULL;
@@ -309,3 +309,4 @@ void imprime_lista_circular(Lista* li){
         no = no->prox;
     } while(no != *li);
 }
+

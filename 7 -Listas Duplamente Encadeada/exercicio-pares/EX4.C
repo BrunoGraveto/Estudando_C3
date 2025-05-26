@@ -29,3 +29,7 @@ int main () {
 
     return 0;
 }
+
+//Feito em Dupla Jefferson korte junior RA 2651114 & Bruno eduardo RA: 26677156
+
+//Nesse exercicio peguei como base as funçoes: imprimi_lista, remove_lista_inicio, remove_lista_final, inserir_lista_inicio e inserir_lista_final e apenas adicionei para o ponteiro ant do primeiro elemento apontar para o ultimo e o ponteiro prox do ultimo elemento apontar para o primeiro. Assim ficando uma lista circular.
