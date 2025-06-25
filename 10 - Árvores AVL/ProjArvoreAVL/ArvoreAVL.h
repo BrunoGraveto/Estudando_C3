@@ -1,3 +1,5 @@
+#ifndef ARVORE_AVL
+#define ARVORE_AVL
 
 typedef struct NO* ArvAVL;
 
@@ -12,3 +14,5 @@ int consulta_ArvAVL(ArvAVL *raiz, int valor);
 void preOrdem_ArvAVL(ArvAVL *raiz);
 void emOrdem_ArvAVL(ArvAVL *raiz);
 void posOrdem_ArvAVL(ArvAVL *raiz);
+
+#endif
