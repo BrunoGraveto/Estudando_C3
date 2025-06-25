@@ -14,5 +14,14 @@ int consulta_ArvAVL(ArvAVL *raiz, int valor);
 void preOrdem_ArvAVL(ArvAVL *raiz);
 void emOrdem_ArvAVL(ArvAVL *raiz);
 void posOrdem_ArvAVL(ArvAVL *raiz);
+void RotacaoLR(ArvAVL *raiz);
+void RotacaoRL(ArvAVL *raiz);
+
+// Exercicio 4
+void RotacaoRR(ArvAVL *raiz);
+
+// Exercicio 8
+void insereEmOrdem(struct NO* raizABB, ArvAVL *raizAVL);
+ArvAVL* transforma(ArvAVL *raiz_original);
 
 #endif

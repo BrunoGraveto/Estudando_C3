@@ -143,12 +143,12 @@ void RotacaoLL(ArvAVL *raiz){//LL
 }
 
 
-void RotacaoLR(ArvAVL *raiz){//LR
+void RotacaoLR(ArvAVL *raiz) {//LR
     RotacaoRR(&(*raiz)->esq);
     RotacaoLL(raiz);
 }
 
-void RotacaoRL(ArvAVL *raiz){//RL
+void RotacaoRL(ArvAVL *raiz) {//RL
     RotacaoLL(&(*raiz)->dir);
     RotacaoRR(raiz);
 }
@@ -268,4 +268,37 @@ int remove_ArvAVL(ArvAVL *raiz, int valor){
 	(*raiz)->altura = maior(altura_NO((*raiz)->esq),altura_NO((*raiz)->dir)) + 1;
 
 	return res;
+}
+
+//////////////////////////////////////////////////
+// Exercicio 4 ///////////////////////////////////
+//////////////////////////////////////////////////
+
+void RotacaoRR(ArvAVL *raiz) { 
+    struct NO *B;
+    B = (*raiz)->dir;
+    (*raiz)->dir = B->esq;
+    B->esq = *raiz;
+    (*raiz)->altura = maior(altura_NO((*raiz)->esq), altura_NO((*raiz)->dir)) + 1;
+    B->altura = maior(altura_NO(B->dir), (*raiz)->altura) + 1;
+    *raiz = B;
+}
+
+//////////////////////////////////////////////////
+// Exercicio 8 ///////////////////////////////////
+//////////////////////////////////////////////////
+
+void insereEmOrdem(struct NO* raizABB, ArvAVL *raizAVL) {
+    if (raizABB != NULL) {
+        insereEmOrdem(raizABB->esq, raizAVL);
+        insere_ArvAVL(raizAVL, raizABB->info);
+        insereEmOrdem(raizABB->dir, raizAVL);
+    }
+}
+
+ArvAVL* transforma(ArvAVL *raizABB) {
+    ArvAVL *novaAVL = cria_ArvAVL();  
+    if (raizABB == NULL || *raizABB == NULL) return novaAVL;  
+    insereEmOrdem(*raizABB, novaAVL); 
+    return novaAVL;
 }
