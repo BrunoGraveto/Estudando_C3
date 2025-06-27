@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Grafo.h" //inclui os Protótipos
+#include <limits.h>
+#include "Grafo.h" //inclui os Protï¿½tipos
 
-//Definição do tipo Grafo
+#define INF INT_MAX
+
+//Definiï¿½ï¿½o do tipo Grafo
 struct grafo{
     int eh_ponderado;
     int nro_vertices;
@@ -110,6 +113,50 @@ void imprime_Grafo(Grafo *gr){
     }
 }
 
+//////////////////////////////////////
+// 5                                //
+//////////////////////////////////////
 
+int minKey(int chave[], int visitado[], int n) {
+    int min = INF, min_index = -1;
+    for (int v = 0; v < n; v++) {
+        if (!visitado[v] && chave[v] < min) {
+            min = chave[v];
+            min_index = v;
+        }
+    }
+    return min_index;
+}
 
+void prim(int **grafo, int n) {
+    int *chave = (int *)malloc(n * sizeof(int));      
+    int *pai = (int *)malloc(n * sizeof(int));        
+    int *visitado = (int *)calloc(n, sizeof(int));    
 
+    for (int i = 0; i < n; i++) {
+        chave[i] = INF;
+        pai[i] = -1;
+    }
+    chave[0] = 0; 
+
+    for (int count = 0; count < n - 1; count++) {
+        int u = minKey(chave, visitado, n);
+        visitado[u] = 1;
+
+        // Atualiza os pesos dos vÃ©rtices adjacentes
+        for (int v = 0; v < n; v++) {
+            if (grafo[u][v] && !visitado[v] && grafo[u][v] < chave[v]) {
+                pai[v] = u;
+                chave[v] = grafo[u][v];
+            }
+        }
+    }
+
+    printf("Arestas da AGM (Prim):\n");
+    for (int i = 1; i < n; i++)
+        printf("%d - %d  peso: %d\n", pai[i], i, grafo[i][pai[i]]);
+
+    free(chave);
+    free(pai);
+    free(visitado);
+}
